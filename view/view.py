@@ -1,25 +1,39 @@
-import customtkinter
+import customtkinter as ctk
+import sys
 
-customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("dark-blue")
+sys.path.insert(0, './/controler')
 
-root = customtkinter.CTk()
-root.geometry("500x350")
+import controler
+import entries as etr
+
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+
+
+root = ctk.CTk()
+root.geometry("500x400")
 root.title("Derivative Calculator")
 
-def calculator():
-    print("test")
+#Inicio
 
-frame = customtkinter.CTkFrame(master=root)
-frame.pack(pady=10, padx=30, fill="both", expand=True)
+## Mostragem
 
-label = customtkinter.CTkLabel(master=frame, text="Derivative Calculator", font=("Roboto", 24))
-label.pack(pady=12, padx=10)
+Frm_entrada = ctk.CTkFrame(master=root)
+Frm_entrada.pack(pady=10, padx=20, fill="both", expand=True)
+Frm_entrada.columnconfigure((0,1,2,3), weight=1, pad=2)
+Frm_entrada.rowconfigure((0,1,2,3,4,5), weight=0, pad=20)
 
-function_entry = customtkinter.CTkEntry(master=frame, placeholder_text="F(x)=")
-function_entry.pack(pady=12, padx=20, fill="x")
+Frm_mostragem = ctk.CTkFrame(master=Frm_entrada)
+Frm_mostragem.grid(row=0, column=0, sticky='nswe', columnspan=4,rowspan=1)
 
-button = customtkinter.CTkButton(master=frame, text="Derivate", command=calculator)
-button.pack(pady=12, padx=10)
+label = ctk.CTkLabel(master=Frm_mostragem, text="Derivative Calculator", font=("Roboto", 24))
+label.pack(pady=12, padx=10, fill="x")
+
+function_entry = ctk.CTkEntry(master=Frm_mostragem, placeholder_text="F(x)=", state='disabled')
+function_entry.pack(pady=10, padx=10, fill="x")
+
+## Entradas
+
+etr.create_entries()
 
 root.mainloop()
