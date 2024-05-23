@@ -11,8 +11,8 @@ def Results():
     Rst_function_derivated = ctk.CTkLabel(master=Frm_Result, text="F'(x) = ",font=("Roboto", 16))
     Rst_function_derivated.grid(row=2, column=0, sticky="w")
 
-    Rst_title = ctk.CTkLabel(master=Frm_Result, text="F(a)", font=("Roboto", 18))
-    Rst_title.grid(row=3, column=1, sticky='w')
+    Rst_title_FA = ctk.CTkLabel(master=Frm_Result, text="F(a)", font=("Roboto", 18))
+    Rst_title_FA.grid(row=3, column=1, sticky='w')
 
     Rst_Val_X = ctk.CTkLabel(master=Frm_Result, text="Insira o valor de 'x': ", font=("Roboto", 16))
     Rst_Val_X.grid(row=4, column=0, sticky="w")
@@ -31,3 +31,9 @@ def Results():
 
     Rst_Point = ctk.CTkLabel(master=Frm_Result, text="P(X,f(x))", font=("Roboto", 16))
     Rst_Point.grid(row=5, column=2, sticky="w")
+
+    Rst_title_Tg = ctk.CTkLabel(master=Frm_Result, text="Reta Tangente", font=("Roboto", 18))
+    Rst_title_Tg.grid(row=6, column=1, sticky='w')
+
+    Rst_tg = ctk.CTkLabel(master=Frm_Result, text="y = ", font=("Roboto", 16))
+    Rst_tg.grid(row=7, column=0, sticky="w")
