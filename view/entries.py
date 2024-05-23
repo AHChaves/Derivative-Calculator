@@ -53,7 +53,7 @@ def create_entries():
     Btn_Zero.grid(column=0, row=5)
 
     Btn_X = ctk.CTkButton(master=Frm_entrada, text="X", width=100, height=30, font=("Roboto", 16))
-    Btn_X.grid(column=1, row=5)
+    Btn_X.grid(column=1, row=5,)
 
     Btn_Calculate = ctk.CTkButton(master=Frm_entrada, text="Calculate", width=215, height=30, font=("Roboto", 16))
     Btn_Calculate.grid(column=2, columnspan= 2,row=5)
