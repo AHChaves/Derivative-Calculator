@@ -1,6 +1,16 @@
+import entries
+from view import text_result
+
+funcao = ''
+numbers = []
+potences = []
+operations = []
 
 def calculator():
     print("test")
+
+def Delete():
+    print("delete")
 
 def Clear():
     print("Clear")
@@ -15,6 +25,9 @@ def Minus():
     print("-")
 
 def Seven():
+    funcao = funcao + str("7")
+    text_result.set(funcao)
+
     print("Seven")
 
 def Eight():
@@ -48,10 +61,10 @@ def Three():
     print("Three")
 
 def Potence():
-    print("Potence")
+    print("^")
 
 def Zero():
     print("Zero")
 
 def X():
-    print("X")
+    print("x")

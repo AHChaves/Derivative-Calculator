@@ -1,7 +1,10 @@
-import customtkinter as ctk
+from tkinter import StringVar
 
+
+import customtkinter as ctk
 import entries as etr
 import resultados as rst
+
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -36,7 +39,11 @@ Frm_mostragem.grid(row=0, column=0, sticky='nswe', columnspan=4,rowspan=1)
 label = ctk.CTkLabel(master=Frm_mostragem, text="Derivative Calculator", font=("Roboto", 24))
 label.pack(pady=12, padx=10, fill="x")
 
-function_entry = ctk.CTkLabel(master=Frm_mostragem, text="", bg_color="#808080", corner_radius=50)
+
+text_result = StringVar()
+text_result = ""
+
+function_entry = ctk.CTkLabel(master=Frm_mostragem, text=text_result, bg_color="#808080", corner_radius=50)
 function_entry.pack(pady=10, padx=10, fill="x")
 
 
