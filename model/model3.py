@@ -36,11 +36,15 @@ for x in monomios:
     contador += 1
 
 for y in derivada:
-    
-    if y[0] == '-':
+    #if derivada[0] == y and y[0] == "+":
+       # y[0].pop()
+       # d += y
+    if y[0] == '+' and derivada[0] == y:
         d += y
-    else:
+    elif y[0] == '+':
         d += "+"+y
+    else:
+        d += y
 
 print("Monômios:", monomios)
 print("Operadores:", operadores)
