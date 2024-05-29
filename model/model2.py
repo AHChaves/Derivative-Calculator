@@ -1,17 +1,50 @@
-import string
-import sympy as sp
+import re
 
-# Receber a expressão do usuário
-fx = input("Digite a expressão f(x): ")
+monomios = []
+operadores = []
+coeficientes = []
+expoentes = []
+derivada = []
 
-# Criar o símbolo 'x'
-x = sp.symbols('x')
+def separar_monomios_e_operadores(funcao):
+    if funcao[0] not in '+-':
+        funcao = '+' + funcao
+    monomios = re.findall(r'[+-]?\d*x\^\d+|[+-]?\d*x|[+-]?\d+', funcao)
+    operadores = re.findall(r'[+-]', funcao[1:])
+    return monomios, operadores
 
-# Converter a expressão em uma expressão simbólica
-expr = sp.sympify(fx)
+string = input("Digite uma funcao para derivar: ").lower().replace(" ","")
+monomios, operadores = separar_monomios_e_operadores(string)
 
-# Calcular a derivada da expressão
-derivada = sp.diff(expr, x)
+contador = 0
+d = ""
 
-# Imprimir a derivada
-print("A derivada de f(x) é:", derivada)
+for x in monomios:
+    pos = x.find("x")
+    if pos != -1:
+        coeficientes.append(int(x[:pos]))
+        try:
+            expoentes.append(int(x[pos+2:]))
+        except ValueError:
+            expoentes.append(int(1))
+        temp = coeficientes[contador] * expoentes[contador]
+        if expoentes[contador] == 1:
+            derivada.append(str(temp))
+        else:
+            aux = expoentes[contador]-1
+            derivada.append(str(temp)+"x^"+str(aux))            
+    contador += 1
+
+for y in derivada:
+    
+    if y[0] == '-':
+        d += y
+    else:
+        d += "+"+y
+
+print("Monômios:", monomios)
+print("Operadores:", operadores)
+print("Coeficientes:", coeficientes)
+print("Expoentes:", expoentes)
+print("Derivada:", derivada)
+print("AAA:", d)

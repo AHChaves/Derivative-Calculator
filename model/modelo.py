@@ -1,28 +1,50 @@
-import string
+import re
 
-letras = string.ascii_lowercase
+monomios = []
+operadores = []
 coeficientes = []
-potencia = []
-operadores = ["+","-","*","/"]
-count = 0
-print("coeficiente de a e b para ax^b")
-while True:
-    print(f'iteracao {count}', end="\n\n")
-    a = input("valor do coeficiente a: ")
-    b = input("valor da potencia b: ")
-    if a != 's' or b != 's':  
-        count += 1
-        try:
-            coeficientes.append(int(a))
-            potencia.append(int(b))
-            print("---------")
-        except ValueError:
-            print("Por favor, insira um número válido para 'a' e 'b'.")
-    else:
-        break
+expoentes = []
+derivada = []
 
-for a, b in zip(coeficientes, potencia):
-    if a != 0 and b != 0:
-        print(f'{b * a}x^{b - 1}', end="")
+def separar_monomios_e_operadores(funcao):
+    if funcao[0] not in '+-':
+        funcao = '+' + funcao
+    monomios = re.findall(r'[+-]?\d*x\^\d+|[+-]?\d*x|[+-]?\d+', funcao)
+    operadores = re.findall(r'[+-]', funcao[1:])
+    return monomios, operadores
+
+string = input("Digite uma funcao para derivar: ").lower().replace(" ","")
+monomios, operadores = separar_monomios_e_operadores(string)
+
+contador = 0
+d = ""
+
+for x in monomios:
+    pos = x.find("x")
+    if pos != -1:
+        coeficientes.append(int(x[:pos]))
+        try:
+            expoentes.append(int(x[pos+2:]))
+        except ValueError:
+            expoentes.append(int(1))
+        temp = coeficientes[contador] * expoentes[contador]
+        if expoentes[contador] == 1:
+            derivada.append(str(temp))
+        else:
+            aux = expoentes[contador]-1
+            derivada.append(str(temp)+"x^"+str(aux))            
+    contador += 1
+
+for y in derivada:
+    
+    if y[0] == '-':
+        d += y
     else:
-        print(f'{b * a}x^{b - 1}', end="")
+        d += "+"+y
+
+print("Monômios:", monomios)
+print("Operadores:", operadores)
+print("Coeficientes:", coeficientes)
+print("Expoentes:", expoentes)
+print("Derivada:", derivada)
+print("AAA:", d)
