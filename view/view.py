@@ -2,6 +2,10 @@ from tkinter import StringVar
 import customtkinter as ctk
 import entries as etr
 import resultados as rst
+import sys
+
+sys.path.insert(0, './controler')
+import controler as ctr
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -33,14 +37,14 @@ Frm_mostragem.grid(row=0, column=0, sticky='nswe', columnspan=4,rowspan=1)
 label = ctk.CTkLabel(master=Frm_mostragem, text="Derivative Calculator", font=("Roboto", 24))
 label.pack(pady=12, padx=10, fill="x")
 
-text_result = StringVar()
-text_result = ""
-
-function_entry = ctk.CTkLabel(master=Frm_mostragem, text=text_result, bg_color="#808080", corner_radius=50, anchor='e')
+function_entry = ctk.CTkEntry(master=Frm_mostragem, placeholder_text="Insira um funcao", corner_radius=25)
 function_entry.pack(pady=10, padx=10, fill="x")
 
+Btn_Calculate = ctk.CTkButton(master=Frm_mostragem, text="Calculate", width=90, height=30, font=("Roboto", 16), command=lambda: ctr.num("calculate"))
+Btn_Calculate.pack(pady=10, padx=10, fill="x")
+
+
 ### Entradas
-etr.create_entries()
 
 ## Resultados
 
