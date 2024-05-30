@@ -96,6 +96,8 @@ def RetaTangente(num):
         aux = "+"
         aux += str(b)
         b = str(aux)
+    elif b == 0:
+        b = ""
     else:
         str(b)
     if valor_funcional_derivada == 1:
