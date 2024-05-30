@@ -1,11 +1,7 @@
 from tkinter import StringVar
 import customtkinter as ctk
-import entries as etr
 import resultados as rst
-import sys
-
-sys.path.insert(0, './controler')
-import controler as ctr
+import entries as etr
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -34,17 +30,7 @@ Frm_entrada.rowconfigure((0,1,2,3,4,5), weight=0, pad=20)
 Frm_mostragem = ctk.CTkFrame(master=Frm_entrada)
 Frm_mostragem.grid(row=0, column=0, sticky='nswe', columnspan=4,rowspan=1)
 
-label = ctk.CTkLabel(master=Frm_mostragem, text="Derivative Calculator", font=("Roboto", 24))
-label.pack(pady=12, padx=10, fill="x")
-
-function_entry = ctk.CTkEntry(master=Frm_mostragem, placeholder_text="Insira um funcao", corner_radius=25)
-function_entry.pack(pady=10, padx=10, fill="x")
-
-Btn_Calculate = ctk.CTkButton(master=Frm_mostragem, text="Calculate", width=90, height=30, font=("Roboto", 16), command=lambda: ctr.num("calculate"))
-Btn_Calculate.pack(pady=10, padx=10, fill="x")
-
-
-### Entradas
+etr.create_entries(Frm_mostragem)
 
 ## Resultados
 
@@ -52,8 +38,6 @@ Frm_Result = ctk.CTkFrame(master=Frm_Geral)
 Frm_Result.grid(row=0, column=1, sticky='nswe', padx=10)
 Frm_Result.columnconfigure((0,1,2), weight=0, uniform='a')
 Frm_Result.rowconfigure((0,1,2,3,4,5,6,7), weight=0, pad=10)
-
-### Função e derivada da função
 
 rst.Results()
 
