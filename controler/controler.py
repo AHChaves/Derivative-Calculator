@@ -14,4 +14,6 @@ def calculator(funcao):
 def ValorX(valor):
     if valor != "":
         result, resultDerivada, ponto= calc.ValorFuncional(valor)
-        rst.SetFuncional(result, resultDerivada, ponto)
+        tangente = calc.RetaTangente(valor)
+
+        rst.SetFuncional(result, resultDerivada, ponto, tangente)

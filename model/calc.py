@@ -88,11 +88,10 @@ def calcularFuncao(array, numero):
 
     return somaFuncao
 
-def passo3():
-    num = int(input("Qual o valor de a? "))
+def RetaTangente(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
-    b = valor_funcional_funcao - valor_funcional_derivada * num
+    b = valor_funcional_funcao - valor_funcional_derivada * float(num)
     if b > 0:
         aux = "+"
         aux += str(b)
@@ -100,24 +99,17 @@ def passo3():
     else:
         str(b)
     if valor_funcional_derivada == 1:
-        print("Equacao da reta tangente no ponto P({0}, {1}) eh: y = x{2}".format(num, valor_funcional_funcao, b))
+        return "y = x{2}".format(num, valor_funcional_funcao, b)
     elif valor_funcional_derivada == -1:
-        print("Equacao da reta tangente no ponto P({0}, {1}) eh: y = -x{2}".format(num, valor_funcional_funcao, b))
+        return "y = -x{2}".format(num, valor_funcional_funcao, b)
     else:
-        print("Equacao da reta tangente no ponto P({0}, {1}) eh: y = {2}x{3}".format(num, valor_funcional_funcao, valor_funcional_derivada, b))
-    escolha = input("Deseja calcular outra equacao da reta tangente? (S/N): ").lower().replace(" ","")
-    if escolha == 's':
-        passo3()
-    else:
-        return
+        return "y = {2}x{3}".format(num, valor_funcional_funcao, valor_funcional_derivada, b)
+
 
 def ValorFuncional(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
-    print("f({0}) = {1}".format(num, valor_funcional_funcao))
-    print("f'({0}) = {1}".format(num, valor_funcional_derivada))
-    print("P({0}, {1})".format(num, valor_funcional_funcao))
-    
+
     return "f({0}) = {1}".format(num, valor_funcional_funcao), "f'({0}) = {1}".format(num, valor_funcional_derivada), "P({0}, {1})".format(num, valor_funcional_funcao)
 
 
@@ -126,8 +118,6 @@ def CalculaDerivada(funcao):
     for x in monomio:
         monomios.append(x)
     separando_coeficiente_expoente_e_derivada(monomios)
-    print("f(x) =", funcao)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
-    print("f'(x) =", funcao_derivada)
 
     return "f(x) = " + funcao, "f'(x) = " + funcao_derivada

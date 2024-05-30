@@ -9,11 +9,12 @@ Rst_function_derivated = ctk.CTkLabel
 Rst_F = ctk.CTkLabel
 Rst_FDerivate = ctk.CTkLabel
 Rst_Point = ctk.CTkLabel
+Rst_tg = ctk.CTkLabel
 
 def Results(panel):
 
     global Rst_function, Rst_function_derivated
-    global Rst_F, Rst_FDerivate, Rst_Point
+    global Rst_F, Rst_FDerivate, Rst_Point, Rst_tg
 
     fontepadrao = ctk.CTkFont(family="Roboto", size=16)
 
@@ -66,10 +67,12 @@ def SetResults(funcao, derivada):
     Rst_function.configure(text=funcao)
     Rst_function_derivated.configure(text=derivada)
 
-def SetFuncional(funcao, derivada, ponto):
+def SetFuncional(funcao, derivada, ponto, tangente):
 
-    global Rst_F, Rst_FDerivate, Rst_Point
+    global Rst_F, Rst_FDerivate, Rst_Point, Rst_tg
 
     Rst_F.configure(text=funcao)
     Rst_FDerivate.configure(text=derivada)
     Rst_Point.configure(text=ponto)
+    Rst_tg.configure(text=tangente)
+
