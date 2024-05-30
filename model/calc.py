@@ -111,24 +111,17 @@ def passo3():
     else:
         return
 
-def passo2():
-    num = input("Qual o valor de a? ")
+def ValorFuncional(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
     print("f({0}) = {1}".format(num, valor_funcional_funcao))
     print("f'({0}) = {1}".format(num, valor_funcional_derivada))
     print("P({0}, {1})".format(num, valor_funcional_funcao))
-    escolha = input("Deseja calcular a equacao da reta tangente ao grafico f no ponto P(a, f(a))? (S/N): ").lower().replace(" ","")
-    if escolha == 's':
-        passo3()
-    escolha = input("Deseja calcular outro valor funcional? (S/N) ").lower().replace(" ", "")
-    if escolha == 's':
-        passo2()
-    else:
-        return
+    
+    return "f({0}) = {1}".format(num, valor_funcional_funcao), "f'({0}) = {1}".format(num, valor_funcional_derivada), "P({0}, {1})".format(num, valor_funcional_funcao)
 
-def passo1():
-    funcao = solicitarFuncao()
+
+def CalculaDerivada(funcao):
     monomio = separar_monomios(funcao)
     for x in monomio:
         monomios.append(x)
@@ -136,19 +129,5 @@ def passo1():
     print("f(x) =", funcao)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
     print("f'(x) =", funcao_derivada)
-    escolha = input("Deseja calcular o valor funcional? (S/N): ").lower().replace(" ","")
-    if escolha == 's':
-        passo2()
-    escolha = input("Deseja calcular outra derivada? (S/N): ").lower().format(" ","")
-    if escolha == 's':
-        passo1()
-    else:
-        return
 
-def main():
-    print("Bem-vindo a calculadora de derivada")
-    passo1()
-    print("Saindo do programa...")
-
-if __name__ == "__main__":
-    main()
+    return "f(x) = " + funcao, "f'(x) = " + funcao_derivada

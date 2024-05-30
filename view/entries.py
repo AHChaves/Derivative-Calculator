@@ -23,6 +23,7 @@ class EntryWithLimitation(ctk.CTkEntry):
 
         return True
 
+
 def create_entries(panel):
     CharList = ["(", ")", "[", "]", "*", "/", ".", ",", "{", "}", "~", "?", ";", "´", "´", "%", "$", "#", "@", "'", '"', '|']
 
