@@ -32,6 +32,6 @@ Frm_Result.grid(row=0, column=1, sticky='nswe', padx=10)
 Frm_Result.columnconfigure((0, 1, 2), weight=0, uniform='a')
 Frm_Result.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=0, pad=10)
 
-rst.Results()
+rst.Results(Frm_Result)
 
 root.mainloop()
