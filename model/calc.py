@@ -40,7 +40,10 @@ def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
                 derivadas.append(str(temp)+"x^"+str(aux))            
             contador += 1
         except ValueError:
-            coeficientes.append(1)
+            if x[0] == '-':
+                coeficientes.append(-1)
+            else:
+                coeficientes.append(1)
             try:
                 expoentes.append(int(x[pos+2:]))
             except ValueError:
@@ -97,6 +100,8 @@ def passo3():
         aux = "+"
         aux += str(b)
         b = str(aux)
+    elif b == 0:
+        b = ""
     else:
         str(b)
     if valor_funcional_derivada == 1:
@@ -133,17 +138,21 @@ def passo1():
     for x in monomio:
         monomios.append(x)
     separando_coeficiente_expoente_e_derivada(monomios)
-    print("f(x) =", funcao)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
-    print("f'(x) =", funcao_derivada)
-    escolha = input("Deseja calcular o valor funcional? (S/N): ").lower().replace(" ","")
-    if escolha == 's':
-        passo2()
-    escolha = input("Deseja calcular outra derivada? (S/N): ").lower().format(" ","")
-    if escolha == 's':
+    if len(funcao_derivada) == 0:
+        print("Voce nao digitou uma funcao, e sim uma constante: {0}".format(funcao))
         passo1()
     else:
-        return
+        print("f(x) =", funcao)
+        print("f'(x) =", funcao_derivada)
+        escolha = input("Deseja calcular o valor funcional? (S/N): ").lower().replace(" ","")
+        if escolha == 's':
+            passo2()
+        escolha = input("Deseja calcular outra derivada? (S/N): ").lower().format(" ","")
+        if escolha == 's':
+            passo1()
+        else:
+            return
 
 def main():
     print("Bem-vindo a calculadora de derivada")
