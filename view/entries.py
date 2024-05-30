@@ -24,7 +24,7 @@ class EntryWithLimitation(ctk.CTkEntry):
 
 def create_entries(panel):
 
-    CharList = ["(", ")", "[", "]"]
+    CharList = ["(", ")", "[", "]", "*", "/", ".", ",", "{", "}", "~", "?", ";", "´", "´", "%", "$", "#", "@", "'", '"','|']
 
     label = ctk.CTkLabel(master=panel, text="Derivative Calculator", font=("Roboto", 24))
     label.pack(pady=12, padx=10, fill="x")
