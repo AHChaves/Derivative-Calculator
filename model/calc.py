@@ -5,9 +5,6 @@ import re
 sys.path.insert(0, './controler')
 import controler as ctr
 
-# Variável global para armazenar a variável da função
-variavel = None
-
 # Inicializa as listas para armazenar os monômios, coeficientes, expoentes e derivadas
 monomios = []
 coeficientes = []
@@ -15,7 +12,6 @@ expoentes = []
 derivadas = []
 
 def separar_monomios(string_do_usuario):
-    global variavel
     monomios.clear()
     coeficientes.clear()
     expoentes.clear()
@@ -24,48 +20,47 @@ def separar_monomios(string_do_usuario):
         string_do_usuario = '+' + string_do_usuario
     mon = re.findall(r'[+-]?\d*[a-z]?\^\d+|[+-]?\d*[a-z]|[+-]?\d+', string_do_usuario)
     # Identifica a variável na string da função
-    variavel = next((char for char in string_do_usuario if char.isalpha()), None)
     return mon
 
 # Função para separar os coeficientes, expoentes e derivadas dos monômios
 def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
-   contador = 0
-   for x in array_dos_monomios:
-    pos = x.find(variavel)
-    if pos != -1:
-        try:
-            coeficientes.append(int(x[:pos]))
+    contador = 0
+    for x in array_dos_monomios:
+        pos = x.find('x')
+        if(pos != -1):
             try:
-                expoentes.append(int(x[pos+2:]))
+                coeficientes.append(x[:pos])
+                try:
+                    expoentes.append(int(x[pos+2:]))
+                except ValueError:
+                    expoentes.append(int(1))
+                temp = coeficientes[contador] * expoentes[contador]
+                if expoentes[contador] == 1:
+                    derivadas.append(str(temp))
+                elif expoentes[contador] == 2:
+                    derivadas.append(str(temp) + 'x')
+                else:
+                    aux = expoentes[contador] - 1
+                    derivadas.append(str(temp) + 'x^' + str(aux))            
+                contador += 1
             except ValueError:
-                expoentes.append(int(1))
-            temp = coeficientes[contador] * expoentes[contador]
-            if expoentes[contador] == 1:
-                derivadas.append(str(temp))
-            elif expoentes[contador] == 2:
-                derivadas.append(str(temp) + variavel)
-            else:
-                aux = expoentes[contador] - 1
-                derivadas.append(str(temp) + variavel + '^' + str(aux))            
-            contador += 1
-        except ValueError:
-            if x[0] == '-':
-                coeficientes.append(-1)
-            else:
-                coeficientes.append(1)
-            try:
-                expoentes.append(int(x[pos+2:]))
-            except ValueError:
-                expoentes.append(int(1))
-            temp = coeficientes[contador] * expoentes[contador]
-            if expoentes[contador] == 1:
-                derivadas.append(str(temp))
-            elif expoentes[contador] == 2:
-                derivadas.append(str(temp) + variavel)
-            else:
-                aux = expoentes[contador] - 1
-                derivadas.append(str(temp) + variavel + '^' + str(aux))            
-            contador += 1
+                if x[0] == '-':
+                    coeficientes.append(-1)
+                else:
+                    coeficientes.append(1)
+                try:
+                    expoentes.append(int(x[pos+2:]))
+                except ValueError:
+                    expoentes.append(int(1))
+                temp = coeficientes[contador] * expoentes[contador]
+                if expoentes[contador] == 1:
+                    derivadas.append(str(temp))
+                elif expoentes[contador] == 2:
+                    derivadas.append(str(temp) + 'x')
+                else:
+                    aux = expoentes[contador] - 1
+                    derivadas.append(str(temp) + 'x^' + str(aux))            
+                contador += 1
 
 # Função para criar a derivada da função
 def fazendoFuncaoDerivada(array_da_derivada):
@@ -86,16 +81,16 @@ def calcularFuncao(array, numero):
     for x in array:
         if array[0] == x and first_term == True and x[0] == '+':
             x = x.replace("+", "")
-        if x == f'+{variavel}' or x == f'-{variavel}':
-            x = x.replace(variavel, f'{numero}')
+        if x == f'+x' or x == f'-x':
+            x = x.replace('x', f'{numero}')
             x = x.replace('^', '**')
             somaFuncao += eval(x)
-        elif x[0] == variavel:
-            x = x.replace(variavel, f'{numero}')
+        elif x[0] == 'x':
+            x = x.replace('x', f'{numero}')
             x = x.replace('^', '**')
             somaFuncao += eval(x)
         else:
-            x = x.replace(variavel, f'({numero})')
+            x = x.replace('x', f'({numero})')
             x = x.replace('^', '**')
             somaFuncao += eval(x)
         first_term = False
@@ -142,4 +137,4 @@ def CalculaDerivada(funcao):
     separando_coeficiente_expoente_e_derivada(monomios)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
 
-    return "f({0}) = ".format(variavel) + funcao, "f'({0}) = ".format(variavel) + funcao_derivada
+    return "f(x) = " + funcao, "f'(x) = " + funcao_derivada
