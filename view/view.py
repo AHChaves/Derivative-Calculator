@@ -8,7 +8,7 @@ ctk.set_default_color_theme("dark-blue")
 root = ctk.CTk()
 root.geometry("400x480")
 root.title("Derivative Calculator")
-root.resizable(False, False)
+root.resizable(True, False)
 
 # Inicializa os frames
 Frm_Geral = ctk.CTkFrame(master=root)
@@ -26,8 +26,6 @@ etr.create_entries(Frm_mostragem)
 
 Frm_Result = ctk.CTkFrame(master=Frm_Geral)
 Frm_Result.grid(row=1, column=0, sticky='nswe')
-Frm_Result.columnconfigure((0, 1, 2), weight=1)
-Frm_Result.rowconfigure((0, 1, 2, 3, 4, 5, 6, 7), weight=0, pad=10)
 
 rst.Results(Frm_Result)
 
