@@ -25,6 +25,9 @@ class EntryWithLimitation(ctk.CTkEntry):
 
             if text[i].lower() == 'x' and (text[i+1].isnumeric() or text[i+1] not in self.charlist):
                 return False
+                
+            if text[i] in '+-^' and text[i+1] in '+-^':
+                return False
 
         return True
 
