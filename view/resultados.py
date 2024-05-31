@@ -11,6 +11,23 @@ Rst_FDerivate = ctk.CTkLabel
 Rst_Point = ctk.CTkLabel
 Rst_tg = ctk.CTkLabel
 
+class EntryNumbers(ctk.CTkEntry):
+    def __init__(self, master, **kw):
+        super().__init__(master, **kw)
+
+        text_checker = master.register(self.isValid)
+        self.configure(validate="key", validatecommand=(text_checker, "%P"))
+
+    def isValid(self, text):
+        
+        # Verifica se os caracteres estao na whitelist
+        for char in text:
+            if not char.isdigit():
+                return False
+                
+        return True
+
+
 def Results(panel):
 
     global Rst_function, Rst_function_derivated
@@ -32,7 +49,7 @@ def Results(panel):
     # Valores Funcionais
 
 
-    Rst_title_FA = ctk.CTkLabel(master=panel, text="F(a)", font=("Roboto", 18))
+    Rst_title_FA = ctk.CTkLabel(master=panel, text="F(x)", font=("Roboto", 18))
     Rst_title_FA.pack(pady=5, padx=10)
 
     EntradaFuncional = ctk.CTkFrame(master=panel)
@@ -41,7 +58,7 @@ def Results(panel):
     Rst_Val_X = ctk.CTkLabel(master=EntradaFuncional, text="Insira o valor de 'x': ", font=fontepadrao)
     Rst_Val_X.pack(pady=5, padx=5, side="left", expand=True)
 
-    Rst_Entry_X = ctk.CTkEntry(master=EntradaFuncional, width=100)
+    Rst_Entry_X = EntryNumbers(master=EntradaFuncional, width=100)
     Rst_Entry_X.bind("<Return>", lambda event = None: ctr.ValorX(Rst_Entry_X.get()))
     Rst_Entry_X.pack(pady=5, padx=5, side="left", anchor='center', fill='x', expand=True)
 
