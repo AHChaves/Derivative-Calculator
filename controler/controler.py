@@ -27,10 +27,9 @@ def calculator(funcao):
     
 def ValorX(valor):
 
-    if ('x' or 'X') in func:
-        if valor != "":
-            result, resultDerivada, ponto = calc.ValorFuncional(valor)
-            tangente = calc.RetaTangente(valor)
-            rst.SetFuncional(result, resultDerivada, ponto, tangente)
+    if ('x' or 'X') in func and valor != "":
+        result, resultDerivada, ponto = calc.ValorFuncional(valor)
+        tangente = calc.RetaTangente(valor)
+        rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
 

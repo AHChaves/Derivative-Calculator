@@ -84,3 +84,4 @@ def SetFuncional(funcao, derivada, ponto, tangente):
     Rst_Point.configure(text=ponto)
     Rst_tg.configure(text=tangente)
 
+
