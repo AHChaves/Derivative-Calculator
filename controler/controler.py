@@ -25,7 +25,6 @@ def calculator(funcao):
     rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
     
-
 def ValorX(valor):
 
     if ('x' or 'X') in func:

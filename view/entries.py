@@ -20,10 +20,15 @@ class EntryWithLimitation(ctk.CTkEntry):
                 
         # Verifica se há letras repetidas consecutivamente
         for i in range(len(text)-1):
-            if text[i].lower().isalpha() and text[i].lower() == text[i + 1].lower():
-                return False
 
-            if text[i].lower() == 'x' and (text[i+1].isnumeric() or text[i+1] not in self.charlist):
+            Sequntial =  text[i].lower().isalpha() and text[i].lower() == text[i + 1].lower()
+
+            if Sequntial:
+                return False
+            
+            numberAfterX = text[i].lower() == 'x' and (text[i+1].isnumeric() or text[i+1] not in self.charlist)
+
+            if numberAfterX:
                 return False
 
         return True

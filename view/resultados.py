@@ -52,13 +52,13 @@ def Results(panel):
     Rst_EntradaFuncional.pack(pady=2, padx=10, fill='x')
 
     Rst_F = ctk.CTkLabel(master=Rst_EntradaFuncional, text="f(x) = ", font=fontepadrao)
-    Rst_F.pack(pady=5, padx=2, side="left")
+    Rst_F.pack(pady=5, padx=5, side="left")
 
     Rst_FDerivate = ctk.CTkLabel(master=Rst_EntradaFuncional, text="f'(x) = ", font=fontepadrao)
-    Rst_FDerivate.pack(pady=5, padx=2, side="left")
+    Rst_FDerivate.pack(pady=5, padx=5, side="left")
 
     Rst_Point = ctk.CTkLabel(master=Rst_EntradaFuncional, text="P(X,f(x))", font=fontepadrao)
-    Rst_Point.pack(pady=5, padx=2, side="left")
+    Rst_Point.pack(pady=5, padx=5, side="left")
 
     # Reta tangente
 
