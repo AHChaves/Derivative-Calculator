@@ -12,20 +12,22 @@ class EntryWithLimitation(ctk.CTkEntry):
         self.configure(validate="key", validatecommand=(text_checker, "%P"))
 
     def isValid(self, text):
-        # Verifica se o texto contém caracteres proibidos
-        if any(char in text for char in self.charlist):
-            return False
-
+        
+        # Verifica se os caracteres estao na whitelist
+        for char in text:
+            if char not in self.charlist and not char.isdigit():
+                return False
+                
         # Verifica se há letras repetidas consecutivamente
-        for i in range(len(text) - 1):
-            if text[i].isalpha() and text[i] == text[i + 1]:
+        for i in range(len(text)-1):
+            if text[i].lower().isalpha() and text[i].lower() == text[i + 1].lower():
                 return False
 
         return True
 
 
 def create_entries(panel):
-    CharList = ["(", ")", "[", "]", "*", "/", ".", ",", "{", "}", "~", "?", ";", "´", "´", "%", "$", "#", "@", "'", '"', '|']
+    CharList = ["x", "X", "+", "-", "^"]
 
     label = ctk.CTkLabel(master=panel, text="Derivative Calculator", font=("Roboto", 24))
     label.pack(pady=12, padx=10, fill="x")
