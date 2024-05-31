@@ -40,7 +40,10 @@ def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
                 derivadas.append(str(temp)+"x^"+str(aux))            
             contador += 1
         except ValueError:
-            coeficientes.append(1)
+            if x[0] == '-':
+                coeficientes.append(-1)
+            else:
+                coeficientes.append(1)
             try:
                 expoentes.append(int(x[pos+2:]))
             except ValueError:
@@ -101,11 +104,15 @@ def RetaTangente(num):
     else:
         str(b)
     if valor_funcional_derivada == 1:
-        return "y = x{2}".format(num, valor_funcional_funcao, b)
+        return "y = x{0}".format(b)
     elif valor_funcional_derivada == -1:
-        return "y = -x{2}".format(num, valor_funcional_funcao, b)
+        return "y = -x{0}".format(b)
+    elif valor_funcional_derivada == 0 and len(str(b)) == 0:
+        return "y = {0}{1}".format(valor_funcional_derivada, b)
+    elif valor_funcional_derivada == 0 and len(str(b)) != 0:
+        return "y = {0}".format(int(b))
     else:
-        return "y = {2}x{3}".format(num, valor_funcional_funcao, valor_funcional_derivada, b)
+        return "y = {0}x{1}".format(valor_funcional_derivada, b)
 
 
 def ValorFuncional(num):
