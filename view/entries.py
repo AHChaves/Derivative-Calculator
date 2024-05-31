@@ -21,11 +21,15 @@ class EntryWithLimitation(ctk.CTkEntry):
             if text[i].isalpha() and text[i] == text[i + 1]:
                 return False
 
+        # Verifica se há caracteres proibidos sequencialmente após letras
+        for i in range(len(text) - 1):
+            if text[i].isalpha() and text[i + 1] in self.charlist:
+                return False
+
         return True
 
-
 def create_entries(panel):
-    CharList = ["(", ")", "[", "]", "*", "/", ".", ",", "{", "}", "~", "?", ";", "´", "´", "%", "$", "#", "@", "'", '"', '|']
+    CharList = ["(", ")", "[", "]", "*", "/", ".", ",", "{", "}", "~", "?", ";", "´", "´", "%", "$", "#", "@", "'", '"', '|', " "]
 
     label = ctk.CTkLabel(master=panel, text="Derivative Calculator", font=("Roboto", 24))
     label.pack(pady=12, padx=10, fill="x")
