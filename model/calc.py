@@ -131,4 +131,7 @@ def CalculaDerivada(funcao):
     separando_coeficiente_expoente_e_derivada(monomios)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
 
+    if len(funcao_derivada) == 0:
+        funcao_derivada = '0'
+
     return "f(x) = " + funcao, "f'(x) = " + funcao_derivada

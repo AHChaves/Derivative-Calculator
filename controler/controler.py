@@ -7,16 +7,23 @@ sys.path.insert(0, './view')
 import resultados as rst
 
 
+func = ""
+
 def calculator(funcao):
+
+    global func
+    func = funcao
+
     if funcao != "":
         funcaostring, derivada = calc.CalculaDerivada(funcao)
         rst.SetResults(funcaostring, derivada)
 
 def ValorX(valor):
 
-    if valor != "":
-        result, resultDerivada, ponto = calc.ValorFuncional(valor)
-        tangente = calc.RetaTangente(valor)
-        rst.SetFuncional(result, resultDerivada, ponto, tangente)
+    if ('x' or 'X') in func:
+        if valor != "":
+            result, resultDerivada, ponto = calc.ValorFuncional(valor)
+            tangente = calc.RetaTangente(valor)
+            rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
 
