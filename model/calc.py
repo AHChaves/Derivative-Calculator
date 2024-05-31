@@ -5,10 +5,6 @@ coeficientes = []
 expoentes = []
 derivadas = []
 
-def solicitarFuncao():
-    funcao = input("Por favor digite uma funcao f(x): ").lower().replace(" ","")
-    return funcao
-
 def separar_monomios(string_do_usuario):
     monomios.clear()
     coeficientes.clear()
