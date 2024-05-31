@@ -39,14 +39,14 @@ def Results(panel):
     EntradaFuncional.pack(pady=2, padx=10, fill='x')
     
     Rst_Val_X = ctk.CTkLabel(master=EntradaFuncional, text="Insira o valor de 'x': ", font=fontepadrao)
-    Rst_Val_X.pack(pady=5, padx=2, side="left")
+    Rst_Val_X.pack(pady=5, padx=5, side="left", expand=True)
 
     Rst_Entry_X = ctk.CTkEntry(master=EntradaFuncional, width=100)
     Rst_Entry_X.bind("<Return>", lambda event = None: ctr.ValorX(Rst_Entry_X.get()))
-    Rst_Entry_X.pack(pady=5, padx=2, side="left")
+    Rst_Entry_X.pack(pady=5, padx=5, side="left", anchor='center', fill='x', expand=True)
 
     Rst_Btn_Calcular_X = ctk.CTkButton(master=EntradaFuncional, text="Calculate", width=80, command= lambda: ctr.ValorX(Rst_Entry_X.get()))
-    Rst_Btn_Calcular_X.pack(pady=5, padx=2, side="left")
+    Rst_Btn_Calcular_X.pack(pady=5, padx=5, side="left", anchor='e', expand=True)
 
     Rst_EntradaFuncional = ctk.CTkFrame(master=panel)
     Rst_EntradaFuncional.pack(pady=2, padx=10, fill='x')
