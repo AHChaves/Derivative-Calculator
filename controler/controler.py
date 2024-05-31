@@ -6,7 +6,6 @@ import calc as calc
 sys.path.insert(0, './view')
 import resultados as rst
 
-
 func = ""
 
 def calculator(funcao):
@@ -17,6 +16,15 @@ def calculator(funcao):
     if funcao != "":
         funcaostring, derivada = calc.CalculaDerivada(funcao)
         rst.SetResults(funcaostring, derivada)
+
+    result = "f(x) = "
+    resultDerivada = "f'(x) = "
+    ponto = "P(x,f(x))"
+    tangente = "y = "
+
+    rst.SetFuncional(result, resultDerivada, ponto, tangente)
+
+    
 
 def ValorX(valor):
 

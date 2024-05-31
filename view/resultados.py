@@ -38,6 +38,7 @@ def Results(panel):
     Rst_Val_X.grid(row=4, column=0, sticky="w", padx=10)
 
     Rst_Entry_X = ctk.CTkEntry(master=panel, width=100)
+    Rst_Entry_X.bind("<Return>", lambda event = None: ctr.ValorX(Rst_Entry_X.get()))
     Rst_Entry_X.grid(row=4, column=1, sticky="w", padx=10)
 
     Rst_Btn_Calcular_X = ctk.CTkButton(master=panel, text="Calculate", width=80, command= lambda: ctr.ValorX(Rst_Entry_X.get()))

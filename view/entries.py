@@ -23,6 +23,9 @@ class EntryWithLimitation(ctk.CTkEntry):
             if text[i].lower().isalpha() and text[i].lower() == text[i + 1].lower():
                 return False
 
+            if text[i].lower() == 'x' and (text[i+1].isnumeric() or text[i+1] not in self.charlist):
+                return False
+
         return True
 
 def create_entries(panel):
@@ -32,6 +35,7 @@ def create_entries(panel):
     label.pack(pady=12, padx=10, fill="x")
 
     function_entry = EntryWithLimitation(panel, CharList)
+    function_entry.bind("<Return>", lambda event = None: ctr.calculator(function_entry.get()))
     function_entry.pack(pady=10, padx=10, fill="x")
 
     Btn_Calculate = ctk.CTkButton(master=panel, text="Calculate", width=90, height=30, font=("Roboto", 16), command=lambda: ctr.calculator(function_entry.get()))
