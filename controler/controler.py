@@ -3,6 +3,7 @@ import sys
 
 sys.path.insert(0, './model')
 import calc as calc
+sys.path.insert(0, './view')
 import resultados as rst
 
 
@@ -13,7 +14,12 @@ def calculator(funcao):
 
 def ValorX(valor):
     if valor != "":
-        result, resultDerivada, ponto= calc.ValorFuncional(valor)
-        tangente = calc.RetaTangente(valor)
+        # Encontra a variável na string da função
+        variavel = next((char for char in valor if char.isalpha()), None)
+        if variavel:
+            result, resultDerivada, ponto = calc.ValorFuncional(valor, variavel)
+            tangente = calc.RetaTangente(valor, variavel)
+            rst.SetFuncional(result, resultDerivada, ponto, tangente)
+        else:
+            print("Nenhuma variável encontrada na função.")
 
-        rst.SetFuncional(result, resultDerivada, ponto, tangente)
