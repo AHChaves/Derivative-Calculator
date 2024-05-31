@@ -9,6 +9,8 @@ root = ctk.CTk()
 root.geometry("400x480")
 root.title("Derivative Calculator")
 root.resizable(True, False)
+root.minsize(400,480)
+
 
 # Inicializa os frames
 Frm_Geral = ctk.CTkFrame(master=root)
