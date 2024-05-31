@@ -23,8 +23,12 @@ class EntryWithLimitation(ctk.CTkEntry):
             if text[i].lower().isalpha() and text[i].lower() == text[i + 1].lower():
                 return False
 
-        return True
+        # Verifica se há caracteres proibidos sequencialmente após letras
+        for i in range(len(text) - 1):
+            if text[i].isalpha() and text[i + 1] in self.charlist:
+                return False
 
+        return True
 
 def create_entries(panel):
     CharList = ["x", "X", "+", "-", "^"]
