@@ -116,13 +116,11 @@ def RetaTangente(num):
     else:
         return "y = {0}x{1}".format(valor_funcional_derivada, b)
 
-
 def ValorFuncional(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
 
     return "f({0}) = {1}".format(num, valor_funcional_funcao), "f'({0}) = {1}".format(num, valor_funcional_derivada), "P({0}, {1})".format(num, valor_funcional_funcao)
-
 
 def CalculaDerivada(funcao):
     monomio = separar_monomios(funcao)

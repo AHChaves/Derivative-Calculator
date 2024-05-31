@@ -21,45 +21,52 @@ def Results(panel):
     # Resultados basicos
 
     Rst_title = ctk.CTkLabel(master=panel, text="Results", font=("Roboto", 24))
-    Rst_title.grid(row=0, column=1,sticky="w", )
+    Rst_title.pack(pady=5, padx=10, fill="x")
 
     Rst_function = ctk.CTkLabel(master=panel, text="f(x) =", font=fontepadrao)
-    Rst_function.grid(row=1, column=0, sticky="w", padx=10)
+    Rst_function.pack(pady=2, padx=10, anchor='w')
 
     Rst_function_derivated = ctk.CTkLabel(master=panel, text="f'(x) = ",font=fontepadrao)
-    Rst_function_derivated.grid(row=2, column=0, sticky="w", padx=10)
+    Rst_function_derivated.pack(pady=2, padx=10, anchor='w')
 
     # Valores Funcionais
 
+
     Rst_title_FA = ctk.CTkLabel(master=panel, text="F(a)", font=("Roboto", 18))
-    Rst_title_FA.grid(row=3, column=1, sticky='w')
+    Rst_title_FA.pack(pady=5, padx=10)
 
-    Rst_Val_X = ctk.CTkLabel(master=panel, text="Insira o valor de 'x': ", font=fontepadrao)
-    Rst_Val_X.grid(row=4, column=0, sticky="w", padx=10)
+    EntradaFuncional = ctk.CTkFrame(master=panel)
+    EntradaFuncional.pack(pady=2, padx=10, fill='x')
+    
+    Rst_Val_X = ctk.CTkLabel(master=EntradaFuncional, text="Insira o valor de 'x': ", font=fontepadrao)
+    Rst_Val_X.pack(pady=5, padx=2, side="left")
 
-    Rst_Entry_X = ctk.CTkEntry(master=panel, width=100)
+    Rst_Entry_X = ctk.CTkEntry(master=EntradaFuncional, width=100)
     Rst_Entry_X.bind("<Return>", lambda event = None: ctr.ValorX(Rst_Entry_X.get()))
-    Rst_Entry_X.grid(row=4, column=1, sticky="w", padx=10)
+    Rst_Entry_X.pack(pady=5, padx=2, side="left")
 
-    Rst_Btn_Calcular_X = ctk.CTkButton(master=panel, text="Calculate", width=80, command= lambda: ctr.ValorX(Rst_Entry_X.get()))
-    Rst_Btn_Calcular_X.grid(row=4, column=2, sticky='w')
+    Rst_Btn_Calcular_X = ctk.CTkButton(master=EntradaFuncional, text="Calculate", width=80, command= lambda: ctr.ValorX(Rst_Entry_X.get()))
+    Rst_Btn_Calcular_X.pack(pady=5, padx=2, side="left")
 
-    Rst_F = ctk.CTkLabel(master=panel, text="f(x) = ", font=fontepadrao)
-    Rst_F.grid(row=5, column=0, sticky="w", padx=10)
+    Rst_EntradaFuncional = ctk.CTkFrame(master=panel)
+    Rst_EntradaFuncional.pack(pady=2, padx=10, fill='x')
 
-    Rst_FDerivate = ctk.CTkLabel(master=panel, text="f'(x) = ", font=fontepadrao)
-    Rst_FDerivate.grid(row=5, column=1, sticky="w")
+    Rst_F = ctk.CTkLabel(master=Rst_EntradaFuncional, text="f(x) = ", font=fontepadrao)
+    Rst_F.pack(pady=5, padx=5, side="left")
 
-    Rst_Point = ctk.CTkLabel(master=panel, text="P(X,f(x))", font=fontepadrao)
-    Rst_Point.grid(row=5, column=2, sticky="w")
+    Rst_FDerivate = ctk.CTkLabel(master=Rst_EntradaFuncional, text="f'(x) = ", font=fontepadrao)
+    Rst_FDerivate.pack(pady=5, padx=5, side="left")
+
+    Rst_Point = ctk.CTkLabel(master=Rst_EntradaFuncional, text="P(X,f(x))", font=fontepadrao)
+    Rst_Point.pack(pady=5, padx=5, side="left")
 
     # Reta tangente
 
     Rst_title_Tg = ctk.CTkLabel(master=panel, text="Reta Tangente", font=("Roboto", 18))
-    Rst_title_Tg.grid(row=6, column=1, sticky='w')
+    Rst_title_Tg.pack(pady=5, padx=10)
 
     Rst_tg = ctk.CTkLabel(master=panel, text="y = ", font=fontepadrao)
-    Rst_tg.grid(row=7, column=0, sticky="w", padx=10)
+    Rst_tg.pack(pady=5, padx=10, anchor='w')
 
 def SetResults(funcao, derivada):
 
