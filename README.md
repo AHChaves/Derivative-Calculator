@@ -1,9 +1,9 @@
 # Derivative Calculator
  
- * Arthur Henrique Chaves 
- * Júlio Lage
- * Lucas Caetano
- * Rian
+ * [Arthur Henrique Chaves](https://github.com/AHChaves)
+ * [Júlio Lage](https://github.com/JulioLage-Alx)
+ * [Lucas Caetano](https://github.com/LRCaetanoM)
+ * [Rian](https://github.com/rianpuc)
 
 ## Contexto
 
