@@ -19,7 +19,7 @@ pasta model, e os controlers servem para interligar os codigos das duas outras
 pastas.
 
 ```
-├── Trabalho ISI
+├── Trabalho Calculo 1
 │
 │
 ├── controler/
