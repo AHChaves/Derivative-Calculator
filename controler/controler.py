@@ -31,5 +31,3 @@ def ValorX(valor):
         result, resultDerivada, ponto = calc.ValorFuncional(valor)
         tangente = calc.RetaTangente(valor)
         rst.SetFuncional(result, resultDerivada, ponto, tangente)
-
-

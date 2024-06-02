@@ -6,12 +6,13 @@ class PopUp(ctk.CTkToplevel):
         self.geometry('300x300')
         self.resizable(False, False)
         self.state('normal')
+        self.title("Tutorial")
 
         self.Content()
 
     def Content(self):
 
-        textinfo = "Para informar uma função clique na primeira caixa de entrada e entre no seguinte padrão: ax^n+bx^t+c, sendo x a incognita, a, b, c os multiplicadores e (n, t) as potências"
+        textinfo = "Para informar uma função clique na primeira caixa de entrada e entre no seguinte padrão: ax^n+bx^t+c, sendo x a incognita, a, b, c os coeficientes e (n, t) as potências"
         font=("Roboto", 16)
 
 

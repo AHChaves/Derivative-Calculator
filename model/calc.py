@@ -77,12 +77,20 @@ def calcularFuncao(array, numero):
     for x in array:
         if array[0] == x and first_term == True and x[0] == '+':
             x = x.replace("+", "")
-        if x == '+x' or x == '-x':
-            x = x.replace('x', f'{numero}')
+        if first_term == True and x[0] == '-' and x[1] == 'x':
+           x = x.replace('x', f'({numero})')
+           x = x.replace('^', '**')
+           somaFuncao += eval(x)
+        elif x[0] == '+' and x[1] == 'x':
+            x = x.replace('x', f'({numero})')
+            x = x.replace('^', '**')
+            somaFuncao += eval(x)
+        elif x[0] == '-' and x[1] == 'x':
+            x = x.replace('x', f'({numero})')
             x = x.replace('^', '**')
             somaFuncao += eval(x)
         elif x[0] == 'x':
-            x = x.replace('x', f'{numero}')
+            x = x.replace('x', f'({numero})')
             x = x.replace('^', '**')
             somaFuncao += eval(x)
         else:
@@ -90,7 +98,6 @@ def calcularFuncao(array, numero):
             x = x.replace('^', '**')
             somaFuncao += eval(x)
         first_term = False
-
     return somaFuncao
 
 def RetaTangente(num):
@@ -112,7 +119,7 @@ def RetaTangente(num):
     elif valor_funcional_derivada == 0 and len(str(b)) == 0:
         return "y = {0}{1}".format(valor_funcional_derivada, b)
     elif valor_funcional_derivada == 0 and len(str(b)) != 0:
-        return "y = {0}".format(int(b))
+        return "y = {0}".format(b.replace("+",""))
     else:
         return "y = {0}x{1}".format(valor_funcional_derivada, b)
 

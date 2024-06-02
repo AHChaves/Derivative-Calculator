@@ -22,6 +22,8 @@ class EntryNumbers(ctk.CTkEntry):
         
         # Verifica se os caracteres estao na whitelist
         for char in text:
+            if char == "-":
+                return True
             if not char.isdigit():
                 return False
                 
