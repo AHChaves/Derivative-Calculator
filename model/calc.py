@@ -46,19 +46,7 @@ def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
                 coeficientes.append(-1)
             else:
                 coeficientes.append(1)
-            try:
-                expoentes.append(int(x[pos+2:]))
-            except ValueError:
-                expoentes.append(int(1))
-            temp = coeficientes[contador] * expoentes[contador]
-            if expoentes[contador] == 1:
-                derivadas.append(str(temp))
-            elif expoentes[contador] == 2:
-                derivadas.append(str(temp)+"x")
-            else:
-                aux = expoentes[contador]-1
-                derivadas.append(str(temp)+"x^"+str(aux))            
-            contador += 1
+
 
 def fazendoFuncaoDerivada(array_da_derivada):
     first_term = True
