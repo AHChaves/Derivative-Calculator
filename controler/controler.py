@@ -25,7 +25,8 @@ def calculator(funcao):
     tangente = "y = "
 
     if ('x' or 'X') not in funcao:
-        tangente = "y = {0}".format(funcao)
+        y = funcaostring.split('=')
+        tangente = "y = {0}".format(y[1])
 
     rst.SetFuncional(result, resultDerivada, ponto, tangente)
 

@@ -135,8 +135,20 @@ def CalculaDerivada(funcao):
         monomios.append(x)
     separando_coeficiente_expoente_e_derivada(monomios)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
-
     if len(funcao_derivada) == 0:
         funcao_derivada = '0'
+
+    count = 0
+    for x in monomio:
+        if x[0] == '+' and monomio[0] == x:
+            x.replace("+", "")
+
+        if x.find('x') != -1:
+            count += 1
+
+    if count == 0:
+        funcao = str(eval(funcao))
+    
+
 
     return "f(x) = " + funcao, "f'(x) = " + funcao_derivada
