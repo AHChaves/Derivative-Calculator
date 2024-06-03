@@ -17,10 +17,15 @@ def calculator(funcao):
         funcaostring, derivada = calc.CalculaDerivada(funcao)
         rst.SetResults(funcaostring, derivada)
 
+        
+
     result = "f(x) = "
     resultDerivada = "f'(x) = "
     ponto = "P(x,f(x))"
     tangente = "y = "
+
+    if ('x' or 'X') not in funcao:
+        tangente = "y = {0}".format(funcao)
 
     rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
