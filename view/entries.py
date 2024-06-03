@@ -35,6 +35,9 @@ class EntryWithLimitation(ctk.CTkEntry):
             if text[i].lower() != 'x' and text[i+1] == '^':
                 return False
 
+            if text[i] == '^' and text[i+1].lower() == 'x':
+                return False
+
             if text[i] in '+-^' and text[i+1] in '+-^':
                 return False
 
