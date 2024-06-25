@@ -12,6 +12,12 @@ expoentes = []
 derivadas = []
 raizes_refinadas = []
 
+def CalculandoFuncaoParaEnesima(n, k, x0):
+    return x0 ** n - k
+
+def CalculandoDerivadaParaEnesima(n, x0):
+    return n * (x0**(n-1))
+
 def separar_monomios(string_do_usuario):
     monomios.clear()
     coeficientes.clear()
@@ -119,7 +125,19 @@ def EncontrarIntervalos(monomio):
             intervalos_encontrados.append((proximo_x, proximo_x))
         x = proximo_x
     return intervalos_encontrados
-        
+
+def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
+    for i in range(max_iter):
+        funcao_x0 = CalculandoFuncaoParaEnesima(n, k, x0)
+        funcao_derivada_x0 = CalculandoDerivadaParaEnesima(n, x0)
+        if funcao_derivada_x0 == 0:
+            return None
+        x1 = x0 - funcao_x0 / funcao_derivada_x0
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    return None
+
 def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
         funcao_x0 = calcularFuncao(funcao, x0)
@@ -131,6 +149,12 @@ def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
             return x1
         x0 = x1
     return None
+
+def MetodoNewtonEnesima(n, k):
+    x0 = 1
+    raiz = CalcularRaizEnesima(n, k, x0)
+    if raiz is not None:
+        return raiz
 
 def MetodoNewton(intervalos):
     for(x0, x1) in intervalos:
