@@ -2,7 +2,7 @@ import customtkinter as ctk
 import resultados as rst
 import entries as etr
 
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("dark") 
 ctk.set_default_color_theme("dark-blue")
 
 root = ctk.CTk()
