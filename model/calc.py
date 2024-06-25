@@ -100,6 +100,25 @@ def calcularFuncao(array, numero):
         first_term = False
     return somaFuncao
 
+def fase1(array):
+    intervalos_encontrados = []
+    intervalos = (-10, 10)
+    passo = 0.1
+    x = intervalos[0]
+    while x < intervalos[1]:
+        proximo_x = x + passo
+        resultado_com_x = calcularFuncao(array, x)
+        resultado_com_proximo_x = calcularFuncao(array, proximo_x)
+        if resultado_com_x * resultado_com_proximo_x < 0:
+            intervalos_encontrados.append((x, proximo_x))
+        elif resultado_com_x == 0:
+            intervalos_encontrados.append((x, x))
+        elif resultado_com_proximo_x == 0:
+            intervalos_encontrados.append((proximo_x, proximo_x))
+        x = proximo_x
+    return intervalos_encontrados
+        
+
 def RetaTangente(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
