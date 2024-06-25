@@ -10,6 +10,7 @@ monomios = []
 coeficientes = []
 expoentes = []
 derivadas = []
+raizes_refinadas = []
 
 def separar_monomios(string_do_usuario):
     monomios.clear()
@@ -46,6 +47,19 @@ def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
                 coeficientes.append(-1)
             else:
                 coeficientes.append(1)
+            try:
+                expoentes.append(int(x[pos+2:]))
+            except ValueError:
+                expoentes.append(int(1))
+            temp = coeficientes[contador] * expoentes[contador]
+            if expoentes[contador] == 1:
+                derivadas.append(str(temp))
+            elif expoentes[contador] == 2:
+                derivadas.append(str(temp)+"x")
+            else:
+                aux = expoentes[contador]-1
+                derivadas.append(str(temp)+"x^"+str(aux))            
+            contador += 1
 
 
 def fazendoFuncaoDerivada(array_da_derivada):
@@ -88,15 +102,15 @@ def calcularFuncao(array, numero):
         first_term = False
     return somaFuncao
 
-def fase1(array):
+def EncontrarIntervalos(monomio):
     intervalos_encontrados = []
     intervalos = (-10, 10)
     passo = 0.1
     x = intervalos[0]
     while x < intervalos[1]:
         proximo_x = x + passo
-        resultado_com_x = calcularFuncao(array, x)
-        resultado_com_proximo_x = calcularFuncao(array, proximo_x)
+        resultado_com_x = calcularFuncao(monomio, x)
+        resultado_com_proximo_x = calcularFuncao(monomio, proximo_x)
         if resultado_com_x * resultado_com_proximo_x < 0:
             intervalos_encontrados.append((x, proximo_x))
         elif resultado_com_x == 0:
@@ -106,6 +120,25 @@ def fase1(array):
         x = proximo_x
     return intervalos_encontrados
         
+def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
+    for i in range(max_iter):
+        funcao_x0 = calcularFuncao(funcao, x0)
+        funcao_derivada_x0 = calcularFuncao(derivada, x0)
+        if funcao_derivada_x0 == 0:
+            return None
+        x1 = x0 - funcao_x0 / funcao_derivada_x0
+        if abs(x1 - x0) < tol:
+            return x1
+        x0 = x1
+    return None
+
+def MetodoNewton(intervalos):
+    for(x0, x1) in intervalos:
+        x_inicial = (x0 + x1) / 2
+        raiz = CalcularRaizesRefinadas(monomios, derivadas, x_inicial)
+        if raiz is not None:
+            aux = f"{raiz:.8f}"
+            raizes_refinadas.append(aux)
 
 def RetaTangente(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
@@ -133,7 +166,6 @@ def RetaTangente(num):
 def ValorFuncional(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
     valor_funcional_derivada = calcularFuncao(derivadas, num)
-
     return "f({0}) = {1}".format(num, valor_funcional_funcao), "f'({0}) = {1}".format(num, valor_funcional_derivada), "P({0}, {1})".format(num, valor_funcional_funcao)
 
 def CalculaDerivada(funcao):
@@ -144,7 +176,6 @@ def CalculaDerivada(funcao):
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
     if len(funcao_derivada) == 0:
         funcao_derivada = '0'
-
     count = 0
     for x in monomio:
         if x[0] == '+' and monomio[0] == x:
@@ -152,10 +183,6 @@ def CalculaDerivada(funcao):
 
         if x.find('x') != -1:
             count += 1
-
     if count == 0:
         funcao = str(eval(funcao))
-    
-
-
     return "f(x) = " + funcao, "f'(x) = " + funcao_derivada
