@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import sys
 
-sys.path.insert(0, './controler')
+sys.path.insert(0, '../controler')
 import controler as ctr
 
 Rst_function = ctk.CTkLabel
