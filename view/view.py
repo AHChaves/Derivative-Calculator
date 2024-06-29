@@ -6,10 +6,10 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
 root = ctk.CTk()
-root.geometry("400x525")
+root.geometry("425x525")
 root.title("Derivative Calculator")
 root.resizable(True, False)
-root.minsize(400,480)
+root.minsize(425,525)
 
 Frame = ctk.CTkFrame(master=root)
 Frame.pack(fill="both", expand=True)
@@ -39,7 +39,7 @@ def Open_Derivada():
 def Open_Enesima():
     Frame_Cleaner(Frame)
     en.Enesima_Panel(Frame)
-    Create_Button(2, 0, 2)
+    Create_Button(3, 0, 2)
 
 def Painel_principal():
 
