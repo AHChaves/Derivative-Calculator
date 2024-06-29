@@ -40,8 +40,7 @@ pastas.
 │   │
 │   ├── resultados.py (Código que cria e mostra os resultados das derivada)
 │   │
-│   └── view.py (código principal, ele contem as informações iniciais e a tela 
-│       principal)
+│   └── derivada.py (Ele contem as informações do 1º trabalho)
 │
 └── README.md
 

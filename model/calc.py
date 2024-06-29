@@ -1,9 +1,5 @@
-import sys
-import customtkinter as ctk
 import re
 
-sys.path.insert(0, './controler')
-import controler as ctr
 
 # Inicializa as listas para armazenar os monômios, coeficientes, expoentes e derivadas
 monomios = []
@@ -12,26 +8,37 @@ expoentes = []
 derivadas = []
 raizes_refinadas = []
 
+#Calculando funções
+
 def CalculandoFuncaoParaEnesima(n, k, x0):
     return x0 ** n - k
 
 def CalculandoDerivadaParaEnesima(n, x0):
     return n * (x0**(n-1))
 
+#Manipulação da string
+
 def separar_monomios(string_do_usuario):
     monomios.clear()
     coeficientes.clear()
     expoentes.clear()
     derivadas.clear()
+    raizes_refinadas.clear()
     if string_do_usuario[0] not in '+-':
         string_do_usuario = '+' + string_do_usuario
+
     mon = re.findall(r'[+-]?\d*x\^\d+|[+-]?\d*x|[+-]?\d+', string_do_usuario)
+
+    for x in mon:
+        monomios.append(x)
+
     return mon
 
 def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
    contador = 0
    for x in array_dos_monomios:
     pos = x.find("x")
+
     if pos != -1:
         try:
             coeficientes.append(int(x[:pos]))
@@ -66,7 +73,6 @@ def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
                 aux = expoentes[contador]-1
                 derivadas.append(str(temp)+"x^"+str(aux))            
             contador += 1
-
 
 def fazendoFuncaoDerivada(array_da_derivada):
     first_term = True
@@ -117,6 +123,7 @@ def EncontrarIntervalos(monomio):
         proximo_x = x + passo
         resultado_com_x = calcularFuncao(monomio, x)
         resultado_com_proximo_x = calcularFuncao(monomio, proximo_x)
+
         if resultado_com_x * resultado_com_proximo_x < 0:
             intervalos_encontrados.append((x, proximo_x))
         elif resultado_com_x == 0:
@@ -130,9 +137,12 @@ def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
         funcao_x0 = CalculandoFuncaoParaEnesima(n, k, x0)
         funcao_derivada_x0 = CalculandoDerivadaParaEnesima(n, x0)
+
         if funcao_derivada_x0 == 0:
             return None
+        
         x1 = x0 - funcao_x0 / funcao_derivada_x0
+
         if abs(x1 - x0) < tol:
             return x1
         x0 = x1
@@ -142,11 +152,15 @@ def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
         funcao_x0 = calcularFuncao(funcao, x0)
         funcao_derivada_x0 = calcularFuncao(derivada, x0)
+
         if funcao_derivada_x0 == 0:
             return None
+        
         x1 = x0 - funcao_x0 / funcao_derivada_x0
+
         if abs(x1 - x0) < tol:
             return x1
+        
         x0 = x1
     return None
 
@@ -159,10 +173,14 @@ def MetodoNewtonEnesima(n, k):
 def MetodoNewton(intervalos):
     for(x0, x1) in intervalos:
         x_inicial = (x0 + x1) / 2
+
         raiz = CalcularRaizesRefinadas(monomios, derivadas, x_inicial)
+
         if raiz is not None:
             aux = f"{raiz:.8f}"
             raizes_refinadas.append(aux)
+
+    return raizes_refinadas
 
 def RetaTangente(num):
     valor_funcional_funcao = calcularFuncao(monomios, num)
@@ -196,11 +214,15 @@ def CalculaDerivada(funcao):
     monomio = separar_monomios(funcao)
     for x in monomio:
         monomios.append(x)
+
     separando_coeficiente_expoente_e_derivada(monomios)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
+
     if len(funcao_derivada) == 0:
         funcao_derivada = '0'
+
     count = 0
+
     for x in monomio:
         if x[0] == '+' and monomio[0] == x:
             x.replace("+", "")
@@ -209,4 +231,5 @@ def CalculaDerivada(funcao):
             count += 1
     if count == 0:
         funcao = str(eval(funcao))
+
     return "f(x) = " + funcao, "f'(x) = " + funcao_derivada

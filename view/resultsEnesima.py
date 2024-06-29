@@ -1,8 +1,6 @@
 import customtkinter as ctk
 
 Rst_function = ctk.CTkLabel
-Intervalos = []
-raizes = []
 Frame_Intervalos = ctk.CTkFrame
 Frame_Raizes = ctk.CTkFrame
 fontepadrao = ctk.CTkFont
@@ -18,27 +16,22 @@ def Cria_Resultados(frame, fraizes):
 
     lIntervalos = ctk.CTkLabel(master=frame, text="Intervalos", font=("Roboto", 18))
     lIntervalos.pack(pady=10, padx=5)
-
-
-    Rst_function = ctk.CTkLabel(master=frame, text="f(x) =", font=fontepadrao)
-    Rst_function.pack(pady=2, padx=10, anchor='w')
-
-
-def Adiciona_Intervalos(vet):
     
-    global Intervalos
-    i = 0 
+    lRaizes = ctk.CTkLabel(master=fraizes, text="Raizes", font=("Roboto", 18))
+    lRaizes.pack(pady=10, padx=5)
 
-    for x in vet:
-        Intervalos.append(ctk.CTkLabel(master=Frame_Intervalos, text=x, font=fontepadrao))
-        Intervalos[i].pack(pady=2, padx=10)
-        i+1
+def Adiciona_Intervalos(valor):
+    
+    aux1 = f"{valor[0]:.2f}"
+    aux2 = f"{valor[1]:.2f}"
 
-def Adiciona_Raizes(vet):
-    global raizes
-    i = 0 
+    string = "({0},{1})".format(aux1, aux2)
 
-    for x in vet:
-        raizes.append(ctk.CTkLabel(master=Frame_Raizes, text=x, font=fontepadrao))
-        raizes[i].pack(pady=2, padx=10)
-        i+1
+    Intervalos = ctk.CTkLabel(master=Frame_Intervalos, text= string, font=fontepadrao)
+    Intervalos.pack(pady=2, padx=10, anchor='w')
+
+def Adiciona_Raizes(valor):
+    #string = "x = {0}".format(valor)
+
+    raizes = ctk.CTkLabel(master=Frame_Raizes, text=valor, font=fontepadrao)
+    raizes.pack(pady=2, padx=10, anchor='w')
