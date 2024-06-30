@@ -22,10 +22,10 @@ def Cria_Resultados(frame, fraizes):
 
 def Adiciona_Intervalos(valor):
     
-    aux1 = f"{valor[0]:.2f}"
-    aux2 = f"{valor[1]:.2f}"
+    aux1 = f"{valor[0]:.1f}"
+    aux2 = f"{valor[1]:.1f}"
 
-    string = "({0},{1})".format(aux1, aux2)
+    string = "({0}, {1})".format(aux1, aux2)
 
     Intervalos = ctk.CTkLabel(master=Frame_Intervalos, text= string, font=fontepadrao)
     Intervalos.pack(pady=2, padx=10, anchor='w')

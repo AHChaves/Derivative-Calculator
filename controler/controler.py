@@ -53,18 +53,11 @@ def Achar_Intervalos(funcao):
     func = funcao
 
     if funcao != "":
-        monomio = calc.separar_monomios(funcao)
-        for x in monomio:
-            monomios.append(x)
-        
-        calc.separando_coeficiente_expoente_e_derivada(monomios)
-
-        intervalo = calc.EncontrarIntervalos(monomios)
+        calc.separar_monomios(funcao)
+        calc.separando_coeficiente_expoente_e_derivada(calc.monomios)
+        intervalo = calc.EncontrarIntervalos(calc.monomios)
         for x in intervalo:
-            intervalos.append(x)
             rstN.Adiciona_Intervalos(x)
-
-        raize = calc.MetodoNewton(intervalos)
-        for x in raize:
+        raiz = calc.MetodoNewton(intervalo)
+        for x in raiz:
             rstN.Adiciona_Raizes(x)
-        print(calc.raizes_refinadas)

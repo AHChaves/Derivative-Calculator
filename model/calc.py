@@ -125,11 +125,15 @@ def EncontrarIntervalos(monomio):
         resultado_com_proximo_x = calcularFuncao(monomio, proximo_x)
 
         if resultado_com_x * resultado_com_proximo_x < 0:
-            intervalos_encontrados.append((x, proximo_x))
+            aux1 = f"{x:.1f}"
+            aux2 = f"{proximo_x:.1f}"
+            intervalos_encontrados.append((float(aux1), float(aux2)))
         elif resultado_com_x == 0:
-            intervalos_encontrados.append((x, x))
+            aux1 = f"{x:.1f}"
+            intervalos_encontrados.append((float(aux1), float(aux1)))
         elif resultado_com_proximo_x == 0:
-            intervalos_encontrados.append((proximo_x, proximo_x))
+            aux2 = f"{proximo_x:.1f}"
+            intervalos_encontrados.append((float(aux2), float(aux2)))
         x = proximo_x
     return intervalos_encontrados
 
@@ -152,17 +156,16 @@ def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
         funcao_x0 = calcularFuncao(funcao, x0)
         funcao_derivada_x0 = calcularFuncao(derivada, x0)
-
         if funcao_derivada_x0 == 0:
             return None
         
         x1 = x0 - funcao_x0 / funcao_derivada_x0
-
-        if abs(x1 - x0) < tol:
+        print("x1 = " + str(x1))
+        if abs(x1 - x0) < tol or abs(funcao_x0) < tol:
             return x1
         
         x0 = x1
-    return None
+    return round(x0, 9)
 
 def MetodoNewtonEnesima(n, k):
     x0 = 1
@@ -173,11 +176,10 @@ def MetodoNewtonEnesima(n, k):
 def MetodoNewton(intervalos):
     for(x0, x1) in intervalos:
         x_inicial = (x0 + x1) / 2
-
         raiz = CalcularRaizesRefinadas(monomios, derivadas, x_inicial)
-
         if raiz is not None:
-            aux = f"{raiz:.8f}"
+            aux = f"{raiz:.9f}"
+            aux = aux[:-1]
             raizes_refinadas.append(aux)
 
     return raizes_refinadas
