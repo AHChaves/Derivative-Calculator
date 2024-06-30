@@ -36,6 +36,7 @@ def separar_monomios(string_do_usuario):
 
 def separando_coeficiente_expoente_e_derivada(array_dos_monomios):
    contador = 0
+   print(array_dos_monomios)
    for x in array_dos_monomios:
     pos = x.find("x")
 
@@ -219,9 +220,9 @@ def ValorFuncional(num):
 
 def CalculaDerivada(funcao):
     monomio = separar_monomios(funcao)
+    monomios.clear()
     for x in monomio:
         monomios.append(x)
-
     separando_coeficiente_expoente_e_derivada(monomios)
     funcao_derivada = fazendoFuncaoDerivada(derivadas)
 
