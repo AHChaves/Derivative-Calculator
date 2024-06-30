@@ -42,6 +42,12 @@ def ValorX(valor):
 
 def Achar_Enesima(n, k):
     if n != "" and k != "":
+
+        frame = rstE.GetFrame()
+        
+        for x in frame.winfo_children():
+            x.destroy()
+
         raiz = calc.MetodoNewtonEnesima(float(n), float(k))
 
         rstE.Resultado(n, k, raiz)

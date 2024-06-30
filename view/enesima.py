@@ -22,7 +22,7 @@ class EntryWithLimitation(ctk.CTkEntry):
         
 def Enesima_Panel(frame):
     frame.columnconfigure((0,1), weight=1, pad=10)
-    frame.rowconfigure((0,1,2,3,5), weight=0, pad=10)
+    frame.rowconfigure((0,1,2,3,4,5), weight=0, pad=10)
 
     Titulo = ctk.CTkLabel(master=frame, text="Trabalho 3", font= ("Roboto", 24))
     Titulo.grid(row=0, column=0, columnspan=2, sticky='nswe')
@@ -48,4 +48,7 @@ def Enesima_Panel(frame):
                                   command=lambda: ctr.Achar_Enesima(N_entry.get(), K_entry.get()))
     Btn_Calculate.grid(row = 3, column=0, columnspan=2) 
 
-    rstE.GetFrame(frame)
+    RFrame = ctk.CTkFrame(frame)
+    RFrame.grid(row=4, column=0, columnspan=2, sticky='nswe')
+
+    rstE.SetFrame(RFrame)
