@@ -52,6 +52,15 @@ def Achar_Intervalos(funcao):
     global func, monomios, intervalos
     func = funcao
 
+    FI, FR = rstN.GetFrames()
+    
+    for x in FI.winfo_children():
+        x.destroy()
+    
+    for x in FR.winfo_children():
+        x.destroy()
+    rstN.Cria_Resultados(FI, FR)
+
     if funcao != "":
         calc.separar_monomios(funcao)
         calc.separando_coeficiente_expoente_e_derivada(calc.monomios)

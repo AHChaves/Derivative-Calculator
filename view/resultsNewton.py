@@ -5,6 +5,9 @@ Frame_Intervalos = ctk.CTkFrame
 Frame_Raizes = ctk.CTkFrame
 fontepadrao = ctk.CTkFont
 
+def GetFrames():
+    return Frame_Intervalos, Frame_Raizes
+
 def Cria_Resultados(frame, fraizes):
 
     global Rst_functions, Frame_Intervalos, fontepadrao, Frame_Raizes
