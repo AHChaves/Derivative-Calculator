@@ -1,7 +1,8 @@
 import sys
 import customtkinter as ctk
 import popUp as pop
-sys.path.insert(0, './controler')
+
+sys.path.insert(0, '../controler')
 import controler as ctr
 
 class EntryWithLimitation(ctk.CTkEntry):
@@ -32,6 +33,12 @@ class EntryWithLimitation(ctk.CTkEntry):
             if numberAfterX:
                 return False
                 
+            if text[i].lower() != 'x' and text[i+1] == '^':
+                return False
+
+            if text[i] == '^' and text[i+1].lower() == 'x':
+                return False
+
             if text[i] in '+-^' and text[i+1] in '+-^':
                 return False
 
@@ -49,10 +56,9 @@ def create_entries(panel):
                              font=("Roboto", 14),
                              command= lambda: info.__init__(panel))
     Btn_info.pack(pady=10, padx=10, side='right')
-    
+
     label = ctk.CTkLabel(master=panel, text="Derivative Calculator", font=("Roboto", 24))
     label.pack(pady=12, padx=10, fill="x")
-
 
     function_entry = EntryWithLimitation(panel, CharList)
     function_entry.bind("<Return>", lambda event = None: ctr.calculator(function_entry.get()))

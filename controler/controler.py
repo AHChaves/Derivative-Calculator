@@ -1,12 +1,16 @@
 import customtkinter as ctk
 import sys
 
-sys.path.insert(0, './model')
+sys.path.insert(0, '../model')
 import calc as calc
-sys.path.insert(0, './view')
+sys.path.insert(0, '../view')
 import resultados as rst
+import resultsNewton as rstN
+import resultsEnesima as rstE
 
 func = ""
+monomios = []
+intervalos = []
 
 def calculator(funcao):
 
@@ -22,6 +26,10 @@ def calculator(funcao):
     ponto = "P(x,f(x))"
     tangente = "y = "
 
+    if ('x' or 'X') not in funcao:
+        y = funcaostring.split('=')
+        tangente = "y = {0}".format(y[1])
+
     rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
     
@@ -32,4 +40,31 @@ def ValorX(valor):
         tangente = calc.RetaTangente(valor)
         rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
+def Achar_Enesima(n, k):
+    if n != "" and k != "":
+        raiz = calc.MetodoNewtonEnesima(int(n),int(k))
 
+        rstE.Resultado(n, k, raiz)
+
+
+def Achar_Intervalos(funcao):
+
+    global func, monomios, intervalos
+    func = funcao
+
+    if funcao != "":
+        monomio = calc.separar_monomios(funcao)
+        for x in monomio:
+            monomios.append(x)
+        
+        calc.separando_coeficiente_expoente_e_derivada(monomios)
+
+        intervalo = calc.EncontrarIntervalos(monomios)
+        for x in intervalo:
+            intervalos.append(x)
+            rstN.Adiciona_Intervalos(x)
+
+        raize = calc.MetodoNewton(intervalos)
+        for x in raize:
+            rstN.Adiciona_Raizes(x)
+        print(calc.raizes_refinadas)

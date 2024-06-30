@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import sys
 
-sys.path.insert(0, './controler')
+sys.path.insert(0, '../controler')
 import controler as ctr
 
 Rst_function = ctk.CTkLabel
@@ -22,6 +22,8 @@ class EntryNumbers(ctk.CTkEntry):
         
         # Verifica se os caracteres estao na whitelist
         for char in text:
+            if char == "-":
+                return True
             if not char.isdigit():
                 return False
                 
