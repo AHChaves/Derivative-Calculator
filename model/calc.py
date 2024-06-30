@@ -148,9 +148,9 @@ def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
         x1 = x0 - funcao_x0 / funcao_derivada_x0
 
         if abs(x1 - x0) < tol:
-            return x1
+            return round(x1, 8)
         x0 = x1
-    return round(x0, 9)
+    return round(x0, 8)
 
 def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
@@ -158,11 +158,9 @@ def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
         funcao_derivada_x0 = calcularFuncao(derivada, x0)
         if funcao_derivada_x0 == 0:
             return None
-        
         x1 = x0 - funcao_x0 / funcao_derivada_x0
         if abs(x1 - x0) < tol or abs(funcao_x0) < tol:
             return x1
-        
         x0 = x1
     return round(x0, 9)
 
