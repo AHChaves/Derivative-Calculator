@@ -154,7 +154,7 @@ def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
         x0 = x1
     return round(x0, 8)
 
-def CalcularRaizesRefinadas(funcao, derivada, a, b, tol=1e-20, max_iter=100):
+def CalcularRaizesRefinadas(funcao, derivada, a, b, tol=1e-18, max_iter=100):
     if abs(calcularFuncao(funcao, a)) < tol:
         return round(a, 9)
     elif abs(calcularFuncao(funcao, b)) < tol:
