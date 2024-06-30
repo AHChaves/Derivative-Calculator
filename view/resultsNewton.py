@@ -23,13 +23,17 @@ def Cria_Resultados(frame, fraizes):
     lRaizes = ctk.CTkLabel(master=fraizes, text="Raizes", font=("Roboto", 18))
     lRaizes.pack(pady=10, padx=5)
 
+def Funcao_sem_intervalos():
+    string = "Não há raizes"
+    Intervalos = ctk.CTkLabel(master=Frame_Intervalos, text= string, font=fontepadrao)
+    Intervalos.pack(pady=2, padx=10, anchor='w')
+
 def Adiciona_Intervalos(valor):
     
     aux1 = f"{valor[0]:.1f}"
     aux2 = f"{valor[1]:.1f}"
 
     string = "({0}, {1})".format(aux1, aux2)
-
     Intervalos = ctk.CTkLabel(master=Frame_Intervalos, text= string, font=fontepadrao)
     Intervalos.pack(pady=2, padx=10, anchor='w')
 

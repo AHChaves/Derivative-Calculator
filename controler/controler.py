@@ -71,8 +71,11 @@ def Achar_Intervalos(funcao):
         calc.separar_monomios(funcao)
         calc.separando_coeficiente_expoente_e_derivada(calc.monomios)
         intervalo = calc.EncontrarIntervalos(calc.monomios)
-        for x in intervalo:
-            rstN.Adiciona_Intervalos(x)
-        raiz = calc.MetodoNewton(intervalo)
-        for x in raiz:
-            rstN.Adiciona_Raizes(x)
+        if len(intervalo) !=0:
+            for x in intervalo:
+                rstN.Adiciona_Intervalos(x)
+            raiz = calc.MetodoNewton(intervalo)
+            for x in raiz:
+                rstN.Adiciona_Raizes(x)
+    else:
+        rstN.Funcao_sem_Intervalos()
