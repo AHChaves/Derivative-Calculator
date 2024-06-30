@@ -13,12 +13,13 @@ class EntryWithLimitation(ctk.CTkEntry):
 
     def isValid(self, text):
         # Verifica se os caracteres estao na whitelist
-        #for char in text:
-        if  str.isdigit(text) or text == "":
-            return True
-        else:
-            return False
-
+        # for char in text:
+        for char in text:
+            if char != '.' and not char.isdigit():
+                return False
+            
+        return True
+        
 def Enesima_Panel(frame):
     frame.columnconfigure((0,1), weight=1, pad=10)
     frame.rowconfigure((0,1,2,3,5), weight=0, pad=10)

@@ -160,7 +160,6 @@ def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
             return None
         
         x1 = x0 - funcao_x0 / funcao_derivada_x0
-        print("x1 = " + str(x1))
         if abs(x1 - x0) < tol or abs(funcao_x0) < tol:
             return x1
         
