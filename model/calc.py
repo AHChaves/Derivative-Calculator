@@ -150,7 +150,7 @@ def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
         if abs(x1 - x0) < tol:
             return x1
         x0 = x1
-    return None
+    return round(x0, 9)
 
 def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
