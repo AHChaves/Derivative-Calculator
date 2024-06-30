@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import derivada as dv
+import newton as nw
 import enesima as en
 
 ctk.set_appearance_mode("dark") 
@@ -36,10 +37,15 @@ def Open_Derivada():
     dv.derivada(Frame)
     Create_Button(2, 0)
 
+def Open_Raizes():
+    Frame_Cleaner(Frame)
+    nw.Raizes_Panel(Frame)
+    Create_Button(3, 0, 2)
+
 def Open_Enesima():
     Frame_Cleaner(Frame)
     en.Enesima_Panel(Frame)
-    Create_Button(3, 0, 2)
+    Create_Button(5, 0, 2)
 
 def Painel_principal():
 
@@ -50,7 +56,11 @@ def Painel_principal():
                                           font=("Roboto",16), command= Open_Derivada)
     button_calc_derivada.pack(pady=12, padx=10)
 
-    button_calc_enesima = ctk.CTkButton(master=Frame, text="Trabalho 2", width=120, height=30,
+    button_calc_raizes = ctk.CTkButton(master=Frame, text="Trabalho 2", width=120, height=30,
+                                          font=("Roboto",16), command= Open_Raizes)
+    button_calc_raizes.pack(pady=12, padx=10)
+
+    button_calc_enesima = ctk.CTkButton(master=Frame, text="Trabalho 3", width=120, height=30,
                                           font=("Roboto",16), command= Open_Enesima)
     button_calc_enesima.pack(pady=12, padx=10)
 

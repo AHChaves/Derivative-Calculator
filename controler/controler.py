@@ -5,6 +5,7 @@ sys.path.insert(0, '../model')
 import calc as calc
 sys.path.insert(0, '../view')
 import resultados as rst
+import resultsNewton as rstN
 import resultsEnesima as rstE
 
 func = ""
@@ -19,8 +20,6 @@ def calculator(funcao):
     if funcao != "":
         funcaostring, derivada = calc.CalculaDerivada(funcao)
         rst.SetResults(funcaostring, derivada)
-
-        
 
     result = "f(x) = "
     resultDerivada = "f'(x) = "
@@ -41,6 +40,13 @@ def ValorX(valor):
         tangente = calc.RetaTangente(valor)
         rst.SetFuncional(result, resultDerivada, ponto, tangente)
 
+def Achar_Enesima(n, k):
+    if n != "" and k != "":
+        raiz = calc.MetodoNewtonEnesima(int(n),int(k))
+
+        rstE.Resultado(n, k, raiz)
+
+
 def Achar_Intervalos(funcao):
 
     global func, monomios, intervalos
@@ -56,9 +62,9 @@ def Achar_Intervalos(funcao):
         intervalo = calc.EncontrarIntervalos(monomios)
         for x in intervalo:
             intervalos.append(x)
-            rstE.Adiciona_Intervalos(x)
+            rstN.Adiciona_Intervalos(x)
 
         raize = calc.MetodoNewton(intervalos)
         for x in raize:
-            rstE.Adiciona_Raizes(x)
+            rstN.Adiciona_Raizes(x)
         print(calc.raizes_refinadas)
