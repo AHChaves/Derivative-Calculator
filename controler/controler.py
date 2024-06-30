@@ -42,7 +42,7 @@ def ValorX(valor):
 
 def Achar_Enesima(n, k):
     if n != "" and k != "":
-        raiz = calc.MetodoNewtonEnesima(int(n),int(k))
+        raiz = calc.MetodoNewtonEnesima(float(n), float(k))
 
         rstE.Resultado(n, k, raiz)
 
