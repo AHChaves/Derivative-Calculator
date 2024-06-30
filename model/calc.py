@@ -123,17 +123,22 @@ def EncontrarIntervalos(monomio):
         proximo_x = x + passo
         resultado_com_x = calcularFuncao(monomio, x)
         resultado_com_proximo_x = calcularFuncao(monomio, proximo_x)
-
         if resultado_com_x * resultado_com_proximo_x < 0:
             aux1 = f"{x:.1f}"
             aux2 = f"{proximo_x:.1f}"
-            intervalos_encontrados.append((float(aux1), float(aux2)))
+            intervalo = (float(aux1), float(aux2))
+            if intervalo not in intervalos_encontrados:
+                intervalos_encontrados.append(intervalo)
         elif resultado_com_x == 0:
             aux1 = f"{x:.1f}"
-            intervalos_encontrados.append((float(aux1), float(aux1)))
+            intervalo = (float(aux1), float(aux1))
+            if intervalo not in intervalos_encontrados:
+                intervalos_encontrados.append(intervalo)
         elif resultado_com_proximo_x == 0:
             aux2 = f"{proximo_x:.1f}"
-            intervalos_encontrados.append((float(aux2), float(aux2)))
+            intervalo = (float(aux2), float(aux2))
+            if intervalo not in intervalos_encontrados:
+                intervalos_encontrados.append(intervalo)
         x = proximo_x
     return intervalos_encontrados
 
@@ -141,26 +146,32 @@ def CalcularRaizEnesima(n, k, x0, tol=1e-18, max_iter=100):
     for i in range(max_iter):
         funcao_x0 = CalculandoFuncaoParaEnesima(n, k, x0)
         funcao_derivada_x0 = CalculandoDerivadaParaEnesima(n, x0)
-
         if funcao_derivada_x0 == 0:
             return None
-        
         x1 = x0 - funcao_x0 / funcao_derivada_x0
-
         if abs(x1 - x0) < tol:
             return round(x1, 8)
         x0 = x1
     return round(x0, 8)
 
-def CalcularRaizesRefinadas(funcao, derivada, x0, tol=1e-18, max_iter=100):
+def CalcularRaizesRefinadas(funcao, derivada, a, b, tol=1e-20, max_iter=100):
+    if abs(calcularFuncao(funcao, a)) < tol:
+        return round(a, 9)
+    elif abs(calcularFuncao(funcao, b)) < tol:
+        return round(b, 9)
+    x0 = (a + b)/2
     for i in range(max_iter):
+        print("x0 = " + str(x0))
         funcao_x0 = calcularFuncao(funcao, x0)
         funcao_derivada_x0 = calcularFuncao(derivada, x0)
         if funcao_derivada_x0 == 0:
             return None
         x1 = x0 - funcao_x0 / funcao_derivada_x0
-        if abs(x1 - x0) < tol or abs(funcao_x0) < tol:
-            return x1
+        print("x1 = " + str(x1))
+        if abs(x1 - x0) < tol:
+            print("Retornei aqui: " + str(x1))
+            return round(x1, 9)
+        print("x1 - x0 = " + str(x1-x0))
         x0 = x1
     return round(x0, 9)
 
@@ -172,8 +183,7 @@ def MetodoNewtonEnesima(n, k):
 
 def MetodoNewton(intervalos):
     for(x0, x1) in intervalos:
-        x_inicial = (x0 + x1) / 2
-        raiz = CalcularRaizesRefinadas(monomios, derivadas, x_inicial)
+        raiz = CalcularRaizesRefinadas(monomios, derivadas, x0, x1)
         if raiz is not None:
             aux = f"{raiz:.9f}"
             aux = aux[:-1]
