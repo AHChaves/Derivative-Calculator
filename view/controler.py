@@ -1,12 +1,34 @@
-import customtkinter as ctk
 import sys
+import os
 
-sys.path.insert(0, '../model')
-import calc as calc
-sys.path.insert(0, '../view')
-import resultados as rst
-import resultsNewton as rstN
-import resultsEnesima as rstE
+# Caminho absoluto da pasta model
+model_path = os.path.abspath('../model')
+# Caminho absoluto da pasta view
+view_path = os.path.abspath('.')
+
+# Adicione os diretórios ao sys.path
+sys.path.insert(0, model_path)
+sys.path.insert(0, view_path)
+
+# Verifique se os caminhos estão corretos
+print(f"Model Path: {model_path}")
+print(f"View Path: {view_path}")
+print("Sys Path:")
+for path in sys.path:
+    print(path)
+
+# Tente importar os módulos
+try:
+    print("Importações realizadas com sucesso.")
+    import customtkinter as ctk
+    import sys
+    import calc as calc
+    import resultados as rst
+    import resultsNewton as rstN
+    import resultsEnesima as rstE
+except ModuleNotFoundError as e:
+    print(f"Erro ao importar: {e}")
+   
 
 func = ""
 monomios = []

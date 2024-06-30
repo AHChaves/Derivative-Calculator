@@ -1,7 +1,43 @@
 import customtkinter as ctk
-import derivada as dv
-import newton as nw
-import enesima as en
+import sys
+import os
+
+# Caminho absoluto da pasta model
+model_path = os.path.abspath('../model')
+# Caminho absoluto da pasta view
+view_path = os.path.abspath('.')
+
+# Adicione os diretórios ao sys.path
+sys.path.insert(0, model_path)
+sys.path.insert(0, view_path)
+
+# Verifique se os caminhos estão corretos
+print(f"Model Path: {model_path}")
+print(f"View Path: {view_path}")
+print("Sys Path:")
+for path in sys.path:
+    print(path)
+
+# Tente importar os módulos
+try:
+    import calc as calc
+    import resultados as rst
+    import resultsNewton as rstN
+    import customtkinter as ctk
+    import derivada as dv
+    import newton as nw
+    import enesima as en
+    import resultsEnesima as rstE
+    print("Importações realizadas com sucesso.")
+except ModuleNotFoundError as e:
+    print(f"Erro ao importar: {e}")
+
+# Resto do seu código aqui
+
+    import customtkinter as ctk
+    import derivada as dv
+    import newton as nw
+    import enesima as en
 
 ctk.set_appearance_mode("dark") 
 ctk.set_default_color_theme("dark-blue")

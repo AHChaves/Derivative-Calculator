@@ -3,7 +3,6 @@ import customtkinter as ctk
 import resultsNewton as rstN
 from entries import EntryWithLimitation
 
-sys.path.insert(0, '../controler')
 import controler as ctr
 
 def Raizes_Panel(frame):

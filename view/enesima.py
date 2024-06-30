@@ -2,7 +2,6 @@ import sys
 import customtkinter as ctk
 import resultsEnesima as rstE
 
-sys.path.insert(0, '../controler')
 import controler as ctr
 
 class EntryWithLimitation(ctk.CTkEntry):
