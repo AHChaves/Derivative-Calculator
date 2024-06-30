@@ -2,3 +2,6 @@
 *.pyc
 *.pyc
 controler/__pycache__/controler.cpython-39.pyc
+model/__pycache__/calc.cpython-39.pyc
+controler/__pycache__/controler.cpython-39.pyc
+*.pyc
